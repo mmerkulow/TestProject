@@ -6,10 +6,12 @@ class LoginPage(BaseClass):
     def __init__(self):
         super().__init__()
         self.user_email = "maxiivanov1984@gmail.com"
-        self.sign_in = (By.XPATH, '//a[@data-action="sign in"]')
+        self.sign_in = (By.XPATH, "//a[@data-action='sign in']")
         self.input_email = (By.XPATH, "//input[@type='email']")
         self.next_button = (By.XPATH, "//span[text()='Далее']")
+        self.user_password = "Vbybcnh3"
         self.input_password = (By.XPATH, "//input[@name='Passwd']")
+        self.login_button = (By.XPATH, "//span[text()='Далее']")
 
     def login(self):
         elem = self.custom_driver.wait_web_element(self.sign_in)
@@ -18,3 +20,6 @@ class LoginPage(BaseClass):
         input_field.send_keys(self.user_email)
         next_button = self.custom_driver.wait_web_element(self.next_button)
         next_button.click()
+        input_password = self.custom_driver.wait_web_element(self.input_password)
+        input_password.send_keys(self.user_password)
+        self.custom_driver.wait_web_element(self.login_button).click()
